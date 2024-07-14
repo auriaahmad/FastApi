@@ -2,6 +2,7 @@
 from fastapi import APIRouter
 from model.creature import Creature
 import fake.creature as service
+from typing import Union
 
 router = APIRouter(prefix="/creature")
 
@@ -10,7 +11,7 @@ def get_all() -> list[Creature]:
     return service.get_all()
 
 @router.get("/{name}")
-def get_one(name: str) -> Creature:
+def get_one(name: str) -> Union[Creature, None]:
     return service.get_one(name)
 
 @router.post("/")
